@@ -20,6 +20,8 @@ public:
 	LinearColor GetPixel(const ScreenPoint& InPos);
 	void PutPixel(const ScreenPoint& InPos);
 	void PutPixel(const ScreenPoint& InPos, const LinearColor& InColor);
+	void SetPixelWithoutAlpha(const ScreenPoint& InPos, const LinearColor& InColor);
+	void SetPixelWithAlpha(const ScreenPoint& InPos, const LinearColor& InColor);
 
 	void CreateDepthBuffer();
 	void ClearDepthBuffer();

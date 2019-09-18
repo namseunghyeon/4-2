@@ -84,8 +84,8 @@ void WindowsGDI::FillBuffer()
 		return;
 	}
 
-	Color32* dest = ScreenBuffer;
-	unsigned long totalCount = ScreenSize.X * ScreenSize.Y;
+	register Color32* dest = ScreenBuffer;
+	register unsigned long totalCount = ScreenSize.X * ScreenSize.Y;
 	while (totalCount--)
 	{
 		*dest++ = CurrentColor;
@@ -164,6 +164,17 @@ void WindowsGDI::SwapBuffer()
 void WindowsGDI::PutPixel(const ScreenPoint& InPos, const LinearColor& InColor)
 {
 	PutPixel(InPos, InColor.ToColor32(bSRGBColorSpace));
+}
+
+void WindowsGDI::SetPixelWithoutAlpha(const ScreenPoint& InPos, const LinearColor& InColor)
+{
+	PutPixel(InPos, InColor.ToColor32(bSRGBColorSpace));
+}
+
+void WindowsGDI::SetPixelWithAlpha(const ScreenPoint& InPos, const LinearColor& InColor)
+{
+	LinearColor bufferColor = GetPixel(InPos);
+	PutPixel(InPos, (InColor * InColor.A + bufferColor * (1.f - InColor.A)).ToColor32());
 }
 
 void WindowsGDI::CreateDepthBuffer()

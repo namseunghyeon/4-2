@@ -1,6 +1,6 @@
 @echo off
 
-@echo Generating visual studio 2017 64Bit solutions
+@echo Generating visual studio 2019 64Bit solutions
 PUSHD %~dp0
 
 @echo Check exist Project folder
@@ -9,7 +9,7 @@ IF EXIST "Project" rd "Project" /s /q
 md Project
 cd Project
 @echo Run CMake Script
-cmake -DBUILD_PLAYER=ON -DBUILD_RUNTIME=ON -G "Visual Studio 15 2017 Win64" ..\
+cmake -DBUILD_PLAYER=ON -DBUILD_RUNTIME=ON -G "Visual Studio 16 2019" -A x64 ..\
 
 @echo:
 @echo Solution created in %~dp0\Project

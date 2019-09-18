@@ -9,6 +9,8 @@ struct Math
 	static const float TwoPI;
 	static const float HalfPI;
 	static const float InvPI;
+	static const int IntMin;
+	static const int IntMax;
 
 	static FORCEINLINE int TruncToInt(float InFloat)
 	{
