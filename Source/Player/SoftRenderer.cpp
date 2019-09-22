@@ -58,20 +58,25 @@ void SoftRenderer::Update()
 
 		RSI->SetColor(LinearColor(1.f, 0.f, 0.f, 1.f));
 
-		Vertex vertices[3];
+		Vertex vertices[6];
 		vertices[0].Position = Vector2(-100, -100.f);
-		vertices[1].Position = Vector2(0.f, 100.f);
-		vertices[2].Position = Vector2(100.f, -100.f);
+		vertices[0].Color = LinearColor(1.f, 0.f, 0.f);
 
-		for (int i = 0; i < 3; i++)
-			vertices[i].Color = Color32(255, 0, 0);
+		vertices[1].Position = Vector2(-100.f, 100.f);
+		vertices[1].Color = LinearColor(0.f, 1.f, 0.f);
 
-		int indices[3]{ 0,1,2 };
+		vertices[2].Position = Vector2(100.f, 100.f);
+		vertices[2].Color = LinearColor(0.f, 0.f, 1.f);
+
+		vertices[3].Position = Vector2(100.f, -100.f);
+		vertices[3].Color = LinearColor(1.f, 0.f, 0.f);
+
+		int indices[6]{ 0,1,2,0,2,3 };
 
 		// Draw Call
-		RSI->SetVertexBuffer(vertices);
-		RSI->SetIndexBuffer(indices);
-		RSI->DrawPrimitive(3, 3);
+		RSI->setVertexBuffer(vertices);
+		RSI->setIndexBuffer(indices);
+		RSI->drawPrimitive(4, 6);
 
 		// rende Code End
 		RSI->EndFrame();

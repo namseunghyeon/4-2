@@ -12,16 +12,16 @@ public:
 	explicit TriangleRasterizer(Vertex InVertex0, Vertex InVertex1, Vertex InVertex2);
 
 public:
-	FORCEINLINE bool HasColor() const { return bHasColor; }
-	FORCEINLINE bool HasUV() const { return bHasUV; }
-	void RecalcBounds();
-	void GenerateContourBuffer(const ScreenPoint& InStartPos, const ScreenPoint& InEndPos);
-	int* GetContourBuffer() const { return ContourBuffer; }
-	int GetContourBufferSize() const { return ContourBufferSize; }
+	FORCEINLINE bool hasColor() const { return bHasColor; }
+	FORCEINLINE bool hasUV() const { return bHasUV; }
+	void recalcBounds();
+	void generateContourBuffer(const ScreenPoint& InStartPos, const ScreenPoint& InEndPos);
+	int* getContourBuffer() const { return contourBuffer; }
+	int getContourBufferSize() const { return contourBufferSize; }
 
-	FORCEINLINE bool IsInside(const Vector2& In) const
+	FORCEINLINE bool isInside(const Vector2& In) const
 	{
-		Vector2 st = GetBaryCentricCoord(In);
+		Vector2 st = getSt(In);
 		if (st.X < 0.f) return false;
 		if (st.Y < 0.f) return false;
 		if ((st.X + st.Y) > 1.f) return false;
@@ -29,40 +29,40 @@ public:
 		return true;
 	}
 
-	FORCEINLINE LinearColor GetColor(const Vector2& InScreenPosition) const
+	FORCEINLINE LinearColor getColor(const Vector2& InScreenPosition) const
 	{
-		if (!HasColor())
+		if (!hasColor())
 		{
 			return LinearColor::Error;
 		}
 
-		Vector2 st = GetBaryCentricCoord(InScreenPosition);
+		Vector2 st = getSt(InScreenPosition);
 		float oneMinusST = 1 - st.X - st.Y;
-		return VertexBuffer[0].Color * oneMinusST + VertexBuffer[1].Color * st.X + VertexBuffer[2].Color * st.Y;
+		return vertexBuffer[0].Color * oneMinusST + vertexBuffer[1].Color * st.X + vertexBuffer[2].Color * st.Y;
 	}
 
-	FORCEINLINE Vector2 GetBaryCentricCoord(const Vector2& InScreenPosition) const
+	FORCEINLINE Vector2 getSt(const Vector2& InScreenPosition) const
 	{
-		Vector2 w = InScreenPosition - Vector2(VertexBuffer[0].Position.X, VertexBuffer[0].Position.Y);
-		float dotUW = UVector.Dot(w);
-		float dotVW = VVector.Dot(w);
-		float s = (DotVV * dotUW - DotUV * dotVW) * InvDenom;
-		float t = (DotUU * dotVW - DotUV * dotUW) * InvDenom;
+		Vector2 w = InScreenPosition - Vector2(vertexBuffer[0].Position.X, vertexBuffer[0].Position.Y);
+		float dotUW = uVector.Dot(w);
+		float dotVW = vVector.Dot(w);
+		float s = (vV * dotUW - uV * dotVW) * invDenom;
+		float t = (uU * dotVW - uV * dotUW) * invDenom;
 		return Vector2(s, t);
 	}
 
 public:
-	Vertex VertexBuffer[3];
+	Vertex vertexBuffer[3];
 	ScreenPoint BottomRight;
 	ScreenPoint TopLeft;
 
 private:
-	Vector2 UVector;
-	Vector2 VVector;
-	float DotUU, DotUV, DotVV, InvDenom;
+	Vector2 uVector;
+	Vector2 vVector;
+	float uU, uV, vV, invDenom;
 
-	int* ContourBuffer = nullptr;
-	int ContourBufferSize = 0;
+	int* contourBuffer = nullptr;
+	int contourBufferSize = 0;
 
 	bool bHasVertex = false;
 	bool bHasColor = false;

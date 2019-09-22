@@ -23,9 +23,9 @@ public:
 	virtual void EndFrame() override { SwapBuffer(); }
 
 
-	virtual void SetVertexBuffer(Vertex* InVertexData) override;
-	virtual void SetIndexBuffer(const int* InIndexData) override;
-	virtual void DrawPrimitive(UINT InVertexSize, UINT InIndexSize) override;
+	virtual void setVertexBuffer(Vertex* InVertexData) override;
+	virtual void setIndexBuffer(const int* InIndexData) override;
+	virtual void drawPrimitive(UINT InVertexSize, UINT InIndexSize) override;
 
 	virtual void DrawScreenPoint(const ScreenPoint& InScreenPoint, const LinearColor& inColor) override;
 

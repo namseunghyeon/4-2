@@ -30,36 +30,31 @@ void WindowsRSI::DrawScreenPoint(const ScreenPoint & InScreenPoint, const Linear
 	PutPixel(InScreenPoint, inColor.ToColor32());
 }
 
-void WindowsRSI::SetVertexBuffer(Vertex* InVertexData)
+void WindowsRSI::setVertexBuffer(Vertex* InVertexData)
 {
 	VertexBuffer = InVertexData;
 }
 
-void WindowsRSI::SetIndexBuffer(const int* InIndexData)
+void WindowsRSI::setIndexBuffer(const int* InIndexData)
 {
 	IndexBuffer = InIndexData;
 }
 
-void WindowsRSI::DrawPrimitive(UINT InVertexSize, UINT InIndexSize)
+void WindowsRSI::drawPrimitive(UINT InVertexSize, UINT InIndexSize)
 {
 	if (VertexBuffer == nullptr || IndexBuffer == nullptr)
-	{
 		return;
-	}
 
 	UINT triangleCount = (int)(InIndexSize / 3);
 	for (UINT ti = 0; ti < triangleCount; ti++)
 	{
-		// Draw Each Triangle List 
 		TriangleRasterizer t(
 			VertexBuffer[IndexBuffer[ti * 3]],
 			VertexBuffer[IndexBuffer[ti * 3 + 1]],
 			VertexBuffer[IndexBuffer[ti * 3 + 2]]);
 
-		//t.RecalcBounds();
-
-		int* contourBuffer = t.GetContourBuffer();
-		int bufferSize = t.GetContourBufferSize();
+		int* contourBuffer = t.getContourBuffer();
+		int bufferSize = t.getContourBufferSize();
 
 		for (int y = 0; y < bufferSize; ++y)
 		{
@@ -70,7 +65,7 @@ void WindowsRSI::DrawPrimitive(UINT InVertexSize, UINT InIndexSize)
 			for (int screenX = startXValue; screenX <= endXValue; ++screenX)
 			{
 				ScreenPoint currentPixel(screenX, screenY);
-				SetPixelWithAlpha(currentPixel, t.GetColor(currentPixel.ToVector2()));
+				SetPixelWithAlpha(currentPixel, t.getColor(currentPixel.ToVector2()));
 			}
 		}
 

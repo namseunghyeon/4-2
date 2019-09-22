@@ -23,9 +23,9 @@ public:
 	virtual void BeginFrame() = 0;
 	virtual void EndFrame() = 0;
 
-	virtual void SetVertexBuffer(Vertex* InVertexData) = 0;
-	virtual void SetIndexBuffer(const int* InIndexData) = 0;
-	virtual void DrawPrimitive(UINT InVertexSize, UINT InIndexSize) = 0;
+	virtual void setVertexBuffer(Vertex* InVertexData) = 0;
+	virtual void setIndexBuffer(const int* InIndexData) = 0;
+	virtual void drawPrimitive(UINT InVertexSize, UINT InIndexSize) = 0;
 
 	virtual void DrawScreenPoint(const ScreenPoint& InPoint, const LinearColor& inclearColor) = 0;
 };
