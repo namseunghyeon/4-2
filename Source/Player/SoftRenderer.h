@@ -31,6 +31,7 @@ private:
 	~SoftRenderer() { Shutdown(); }
 
 	RenderMode CurrentRenderMode = RenderMode::TWO;
-
 	WindowsRSI* RSI = nullptr;
+
+	UINT32 _screenSize;
 };

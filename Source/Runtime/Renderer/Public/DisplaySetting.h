@@ -2,7 +2,6 @@
 #pragma once
 
 #include "ScreenPoint.h"
-
 class DisplaySetting
 {
 public:

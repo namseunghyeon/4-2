@@ -84,11 +84,21 @@ void WindowsGDI::FillBuffer()
 		return;
 	}
 
-	register Color32* dest = ScreenBuffer;
-	register unsigned long totalCount = ScreenSize.X * ScreenSize.Y;
-	while (totalCount--)
+	Color32* src = ScreenBuffer;
+	Color32* dest = ScreenBuffer;
+
+	for (unsigned long totalCnt = ScreenSize.X * ScreenSize.Y, cur; 0 < totalCnt;)
 	{
-		*dest++ = CurrentColor;
+		*src = CurrentColor;
+		dest++;
+		for (cur = 1; cur * 2 < totalCnt; cur *= 2)
+		{
+			memcpy(dest, src, sizeof(Color32) * cur);
+			dest += cur;
+		}
+
+		totalCnt -= cur;
+		src = dest;
 	}
 
 	return;
@@ -186,15 +196,31 @@ void WindowsGDI::ClearDepthBuffer()
 {
 	if (DepthBuffer != nullptr)
 	{
-		float* current = DepthBuffer;
+		float* src = DepthBuffer;
+		float* dest = DepthBuffer;
+		float defValue = INFINITY;
+
+		for (unsigned long totalCnt = ScreenSize.X * ScreenSize.Y, cur; 0 < totalCnt;)
+		{
+			*src = defValue;
+			dest++;
+			for (cur = 1; cur * 2 < totalCnt; cur *= 2)
+			{
+				memcpy(dest, src, sizeof(float) * cur);
+				dest += cur;
+			}
+
+			totalCnt -= cur;
+			src = dest;
+		}
+
+		/*float* current = DepthBuffer;
 		float defValue = INFINITY;
 		unsigned long totalCount = ScreenSize.X * ScreenSize.Y;
 		while (totalCount--)
 		{
 			*current++ = defValue;
-		}
-
-		// memset(DepthBuffer, INFINITY, sizeof(float) * ScreenSize.X * ScreenSize.Y);
+		}*/
 	}
 }
 

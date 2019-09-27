@@ -5,6 +5,9 @@
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Private\TriangleRasterizer.cpp">
       <Filter>Private</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Private\Vertex.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Private\WindowsGDI.cpp">
       <Filter>Private</Filter>
     </ClCompile>
@@ -24,6 +27,9 @@
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\TriangleRasterizer.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\Vertex.h">
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\WindowsGDI.h">

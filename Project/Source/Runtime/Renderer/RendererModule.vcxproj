@@ -136,6 +136,12 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Private\Vertex.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Private\WindowsGDI.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
@@ -152,6 +158,7 @@
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\RenderingSoftwareInterface.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\ScreenPoint.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\TriangleRasterizer.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\Vertex.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\WindowsGDI.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Renderer\Public\WindowsRSI.h" />
   </ItemGroup>

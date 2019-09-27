@@ -28,4 +28,7 @@ public:
 	virtual void drawPrimitive(UINT InVertexSize, UINT InIndexSize) = 0;
 
 	virtual void DrawScreenPoint(const ScreenPoint& InPoint, const LinearColor& inclearColor) = 0;
+
+	virtual void DrawHorizontalLine(int InX, const LinearColor& InColor) = 0;
+	virtual void DrawVerticalLine(int InY, const LinearColor& InColor) = 0;
 };

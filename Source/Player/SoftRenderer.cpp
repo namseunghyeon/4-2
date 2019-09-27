@@ -9,6 +9,8 @@ void SoftRenderer::Initialize()
 	if (RSI != nullptr)
 	{
 		RSI->Init(false);
+
+		_screenSize = DisplaySetting::Inst().GetSize().X * DisplaySetting::Inst().GetSize().Y;
 	}
 }
 
@@ -29,36 +31,31 @@ void SoftRenderer::Update()
 		// RSI->BeginFrame();
 		RSI->Clear(LinearColor(0.125f, 0.5f, 1.f, 1.f));
 
-		// Render Code Begin
-		//RSI->DrawScreenPoint(ScreenPoint(0, 0), LinearColor(1.f, 0.f, 0.f));
+		// Axis Line
+		RSI->DrawHorizontalLine(0, LinearColor(1.f, 0.f, 0.f, 1.f));
+		RSI->DrawVerticalLine(0, LinearColor(0.f, 1.f, 0.f, 1.f));
 
-		/*Vector2 center(0.f, 0.f);
-		float radius = 100.f;
+		// Grid Line
+		ScreenPoint screenSize = DisplaySetting::Inst().GetSize();
 
-		Vector2 minPos(center.X - radius, center.Y - radius);
-		Vector2 maxPos(center.X + radius, center.Y + radius);
 
-		ScreenPoint minPoint(minPos);
-		ScreenPoint maxPoint(maxPos);
+		int gridSize = 10;
+		int halfX = Math::FloorToInt(((float)screenSize.X - 1.f) * 0.5f);
+		int halfY = Math::FloorToInt(((float)screenSize.Y - 1.f) * 0.5f);
 
-		LinearColor circleColor(1.f, 0.f, 0.f, 1.f);
-		for (int x = minPoint.X; x <= maxPoint.X; x++)
+		for (int x = gridSize; x < halfX; x += gridSize)
 		{
-			for (int y = minPoint.Y; y <= maxPoint.Y; y++)
-			{
-				ScreenPoint targetPixel(x, y);
-				Vector2 targetPos = targetPixel.ToVector2();
-				float disSquare = (targetPos - center).SizeSquared();
-				if (disSquare < (radius * radius))
-				{
-					RSI->DrawScreenPoint(ScreenPoint(x, y), circleColor);
-				}
-			}
-		}*/
+			RSI->DrawVerticalLine(x, LinearColor(0.5f, 0.5f, 0.5f, 1.f));
+			RSI->DrawVerticalLine(-x, LinearColor(0.5f, 0.5f, 0.5f, 1.f));
+		}
 
-		RSI->SetColor(LinearColor(1.f, 0.f, 0.f, 1.f));
+		for (int y = gridSize; y < halfY; y += gridSize)
+		{
+			RSI->DrawHorizontalLine(y, LinearColor(0.5f, 0.5f, 0.5f, 1.f));
+			RSI->DrawHorizontalLine(-y, LinearColor(0.5f, 0.5f, 0.5f, 1.f));
+		}
 
-		Vertex vertices[6];
+		Vertex vertices[4];
 		vertices[0].Position = Vector2(-100, -100.f);
 		vertices[0].Color = LinearColor(1.f, 0.f, 0.f);
 

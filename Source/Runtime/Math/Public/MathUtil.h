@@ -2,6 +2,7 @@
 
 #include <intrin.h>
 #include "CoreDefinition.h"
+#include <math.h>
 
 struct Math
 {
@@ -22,6 +23,9 @@ struct Math
 		// Note: the x2 is to workaround the rounding-to-nearest-even-number issue when the fraction is .5
 		return _mm_cvt_ss2si(_mm_set_ss(InFloat + InFloat + 0.5f)) >> 1;
 	}
+
+	static FORCEINLINE int FloorToInt(float Infloat) { return TruncToInt(floorf(Infloat)); }
+	static FORCEINLINE int CeilToInt(float Infloat) { return TruncToInt(ceilf(Infloat)); }
 
 	template<class T>
 	static constexpr FORCEINLINE T Square(const T InNum)
