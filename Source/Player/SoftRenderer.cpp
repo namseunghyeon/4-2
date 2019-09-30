@@ -36,12 +36,11 @@ void SoftRenderer::Update()
 		RSI->DrawVerticalLine(0, LinearColor(0.f, 1.f, 0.f, 1.f));
 
 		// Grid Line
-		ScreenPoint screenSize = DisplaySetting::Inst().GetSize();
+		static ScreenPoint screenSize = DisplaySetting::Inst().GetSize();
 
-
-		int gridSize = 10;
-		int halfX = Math::FloorToInt(((float)screenSize.X - 1.f) * 0.5f);
-		int halfY = Math::FloorToInt(((float)screenSize.Y - 1.f) * 0.5f);
+		static int gridSize = 10;
+		static int halfX = Math::FloorToInt(((float)screenSize.X - 1.f) * 0.5f);
+		static int halfY = Math::FloorToInt(((float)screenSize.Y - 1.f) * 0.5f);
 
 		for (int x = gridSize; x < halfX; x += gridSize)
 		{
@@ -55,25 +54,29 @@ void SoftRenderer::Update()
 			RSI->DrawHorizontalLine(-y, LinearColor(0.5f, 0.5f, 0.5f, 1.f));
 		}
 
-		Vertex vertices[4];
-		vertices[0].Position = Vector2(-100, -100.f);
-		vertices[0].Color = LinearColor(1.f, 0.f, 0.f);
+		// line
+		RSI->drawLine(Vector2(0.f, 100.f), Vector2(60.f, 200.f), LinearColor(255, 255, 0));
+		//RSI->drawLine(Vector2(-100.f, 100.f), Vector2(30.f, 30.f), LinearColor(255, 255, 0));
 
-		vertices[1].Position = Vector2(-100.f, 100.f);
-		vertices[1].Color = LinearColor(0.f, 1.f, 0.f);
+		//Vertex vertices[4];
+		//vertices[0].Position = Vector2(-100, -100.f);
+		//vertices[0].Color = LinearColor(1.f, 0.f, 0.f);
 
-		vertices[2].Position = Vector2(100.f, 100.f);
-		vertices[2].Color = LinearColor(0.f, 0.f, 1.f);
+		//vertices[1].Position = Vector2(-100.f, 100.f);
+		//vertices[1].Color = LinearColor(0.f, 1.f, 0.f);
 
-		vertices[3].Position = Vector2(100.f, -100.f);
-		vertices[3].Color = LinearColor(1.f, 0.f, 0.f);
+		//vertices[2].Position = Vector2(100.f, 100.f);
+		//vertices[2].Color = LinearColor(0.f, 0.f, 1.f);
 
-		int indices[6]{ 0,1,2,0,2,3 };
+		//vertices[3].Position = Vector2(100.f, -100.f);
+		//vertices[3].Color = LinearColor(1.f, 0.f, 0.f);
 
-		// Draw Call
-		RSI->setVertexBuffer(vertices);
-		RSI->setIndexBuffer(indices);
-		RSI->drawPrimitive(4, 6);
+		//int indices[6]{ 0,1,2,0,2,3 };
+
+		//// Draw Call
+		//RSI->setVertexBuffer(vertices);
+		//RSI->setIndexBuffer(indices);
+		//RSI->drawPrimitive(4, 6);
 
 		// rende Code End
 		RSI->EndFrame();

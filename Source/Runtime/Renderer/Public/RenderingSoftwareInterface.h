@@ -26,6 +26,7 @@ public:
 	virtual void setVertexBuffer(Vertex* InVertexData) = 0;
 	virtual void setIndexBuffer(const int* InIndexData) = 0;
 	virtual void drawPrimitive(UINT InVertexSize, UINT InIndexSize) = 0;
+	virtual void drawLine(const Vector2& startVec, const Vector2& endvec, const LinearColor& inColor) = 0;
 
 	virtual void DrawScreenPoint(const ScreenPoint& InPoint, const LinearColor& inclearColor) = 0;
 

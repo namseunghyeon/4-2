@@ -98,3 +98,57 @@ void WindowsRSI::drawPrimitive(UINT InVertexSize, UINT InIndexSize)
 
 	}
 }
+
+void WindowsRSI::drawLine(const Vector2& startVec, const Vector2& endvec, const LinearColor & inColor)
+{
+	ScreenPoint curPos(startVec.X, startVec.Y);
+	ScreenPoint whVec(Math::Abs(endvec.X - startVec.X), Math::Abs(endvec.Y - startVec.Y));
+
+	int f;
+	int d1;
+	int d2;
+		
+	Color32 curColor = inColor.ToColor32();
+	if (whVec.X >= whVec.Y)
+	{
+		f = 2 * whVec.Y - whVec.X;
+		d1 = 2 * whVec.Y;
+		d2 = 2 * (whVec.Y - whVec.X);
+
+		for (; curPos.X <= endvec.X; curPos.X++)
+		{
+			PutPixel(curPos, curColor);
+
+			if (f < 0)
+			{
+				f += d1;
+			}
+			else
+			{
+				curPos.Y++;
+				f += d2;
+			}
+		}
+	}
+	else
+	{
+		f = whVec.Y - 2 *  whVec.X;
+		d1 = -2 * whVec.X;
+		d2 = -2 * (whVec.X - whVec.Y);
+
+		for (; curPos.Y <= endvec.Y; curPos.Y++)
+		{
+			PutPixel(curPos, curColor);
+
+			if (f > 0)
+			{
+				f += d1;
+			}
+			else
+			{
+				curPos.X++;
+				f += d2;
+			}
+		}
+	}
+}
