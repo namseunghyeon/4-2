@@ -55,8 +55,28 @@ void SoftRenderer::Update()
 		}
 
 		// line
-		RSI->drawLine(Vector2(0.f, 100.f), Vector2(60.f, 200.f), LinearColor(255, 255, 0));
-		//RSI->drawLine(Vector2(-100.f, 100.f), Vector2(30.f, 30.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(30.f, 50.f), Vector2(50, 250.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(30.f, 50.f), Vector2(200, 100.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(-50.f, -250.f), Vector2(-30.f, -50.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(-200.f, -100.f), Vector2(-30.f, -50.f), LinearColor(255, 255, 0));
+
+		RSI->drawLine(Vector2(-50.f, 250.f), Vector2(-30, 50.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(-200.f, 100.f), Vector2(-30, 50.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(30.f,-50.f), Vector2(50.f, -250.f), LinearColor(255, 255, 0));
+		RSI->drawLine(Vector2(30.f,-50.f), Vector2(200.f, -100.f), LinearColor(255, 255, 0));
+
+		//RSI->drawLine(Vector2(30.f, 50.f), Vector2(200, 100.f), LinearColor(255, 255, 0));
+		//RSI->drawLine(Vector2(-50.f, -250.f), Vector2(-30.f, -50.f), LinearColor(255, 255, 0));
+		//RSI->drawLine(Vector2(-200.f, -100.f), Vector2(-30.f, -50.f), LinearColor(255, 255, 0));
+
+		//RSI->drawLine(Vector2(30.0f, 30.0f), Vector2(60.0f, 200.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(30.0f, 30.0f), Vector2(200.0f, 60.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(-30.0f, 30.0f), Vector2(-60.0f, 200.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(-30.0f, 30.0f), Vector2(-200.0f, 60.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(-30.0f, -30.0f), Vector2(-60.0f, -200.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(-30.0f, -30.0f), Vector2(-200.0f, -60.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(30.0f, -30.0f), Vector2(60.0f, -200.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
+		//RSI->drawLine(Vector2(30.0f, -30.0f), Vector2(200.0f, -60.0f), LinearColor(0.0f, 0.0f, 1.0f, 1.0f));
 
 		//Vertex vertices[4];
 		//vertices[0].Position = Vector2(-100, -100.f);

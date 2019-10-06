@@ -13,7 +13,7 @@ void WindowsRSI::Shutdown()
 	ReleaseGDI();
 }
 
-void WindowsRSI::Clear(const LinearColor & InClearColor)
+void WindowsRSI::Clear(const LinearColor& InClearColor)
 {
 	SetColor(InClearColor);
 	FillBuffer();
@@ -25,12 +25,12 @@ void WindowsRSI::BeginFrame()
 {
 }
 
-void WindowsRSI::DrawScreenPoint(const ScreenPoint & InScreenPoint, const LinearColor & inColor)
+void WindowsRSI::DrawScreenPoint(const ScreenPoint& InScreenPoint, const LinearColor& inColor)
 {
 	PutPixel(InScreenPoint, inColor.ToColor32());
 }
 
-void WindowsRSI::DrawHorizontalLine(int InY, const LinearColor & InColor)
+void WindowsRSI::DrawHorizontalLine(int InY, const LinearColor& InColor)
 {
 	Color32 color = InColor.ToColor32();
 	Color32* dest = ScreenBuffer;
@@ -43,7 +43,7 @@ void WindowsRSI::DrawHorizontalLine(int InY, const LinearColor & InColor)
 	}
 }
 
-void WindowsRSI::DrawVerticalLine(int InX, const LinearColor & InColor)
+void WindowsRSI::DrawVerticalLine(int InX, const LinearColor& InColor)
 {
 	Color32 color = InColor.ToColor32();
 	Color32* dest = ScreenBuffer;
@@ -99,55 +99,105 @@ void WindowsRSI::drawPrimitive(UINT InVertexSize, UINT InIndexSize)
 	}
 }
 
-void WindowsRSI::drawLine(const Vector2& startVec, const Vector2& endvec, const LinearColor & inColor)
+void WindowsRSI::drawLine(const Vector2& startVec, const Vector2& endvec, const LinearColor& inColor)
 {
-	ScreenPoint curPos(startVec.X, startVec.Y);
-	ScreenPoint whVec(Math::Abs(endvec.X - startVec.X), Math::Abs(endvec.Y - startVec.Y));
+	ScreenPoint curPos = ScreenPoint(startVec.X < endvec.X ? startVec : endvec);
+	const ScreenPoint endPos = ScreenPoint(startVec.X < endvec.X ? endvec : startVec);
+	ScreenPoint whVec(endPos.X - startVec.X, endPos.Y - startVec.Y);
 
-	int f;
-	int d1;
-	int d2;
-		
+	int f, d1, d2;
+
 	Color32 curColor = inColor.ToColor32();
-	if (whVec.X >= whVec.Y)
+	// x = w, y = h
+	if (whVec.Y > 0)
 	{
-		f = 2 * whVec.Y - whVec.X;
-		d1 = 2 * whVec.Y;
-		d2 = 2 * (whVec.Y - whVec.X);
-
-		for (; curPos.X <= endvec.X; curPos.X++)
+		whVec.Y = Math::Abs(whVec.Y);
+		if (whVec.X > whVec.Y)
 		{
-			PutPixel(curPos, curColor);
+			f = 2 * whVec.Y - whVec.X;
+			d1 = 2 * whVec.Y;
+			d2 = 2 * (whVec.Y - whVec.X);
 
-			if (f < 0)
+			for (; curPos.X <= endPos.X; curPos.X++)
 			{
-				f += d1;
+				PutPixel(curPos, curColor);
+
+				if (f < 0)
+				{
+					f += d1;
+				}
+				else
+				{
+					++curPos.Y;
+					f +=d2;
+				}
 			}
-			else
+		}
+		else
+		{
+			f = whVec.Y - 2 * whVec.X;
+			d1 = -2 * whVec.X;
+			d2 = 2 * (whVec.Y - whVec.X);
+
+			for (; curPos.Y <= endPos.Y; curPos.Y++)
 			{
-				curPos.Y++;
-				f += d2;
+				PutPixel(curPos, curColor);
+
+				if (f >= 0)
+				{
+					f += d1;
+				}
+				else
+				{
+					++curPos.X;
+					f += d2;
+				}
 			}
 		}
 	}
 	else
 	{
-		f = whVec.Y - 2 *  whVec.X;
-		d1 = -2 * whVec.X;
-		d2 = -2 * (whVec.X - whVec.Y);
-
-		for (; curPos.Y <= endvec.Y; curPos.Y++)
+		whVec.Y = Math::Abs(whVec.Y);
+		if (whVec.X > whVec.Y)
 		{
-			PutPixel(curPos, curColor);
+			f = 2 * whVec.Y - whVec.X;
+			d1 = 2 * whVec.Y;
+			d2 = 2 * (whVec.Y - whVec.X);
 
-			if (f > 0)
+			for (; curPos.X <= endPos.X; curPos.X++)
 			{
-				f += d1;
+				PutPixel(curPos, curColor);
+
+				if (f < 0)
+				{
+					f += d1;
+				}
+				else
+				{
+					--curPos.Y;
+					f += d2;
+				}
 			}
-			else
+		}
+		else
+		{
+			f = whVec.Y - 2 * whVec.X;
+			d1 = -2 * whVec.X;
+			d2 = 2 * (whVec.Y - whVec.X);
+
+			for (; curPos.Y > endPos.Y; curPos.Y--)
 			{
-				curPos.X++;
-				f += d2;
+				PutPixel(curPos, curColor);
+
+				if (f >= 0)
+				{
+					f += d1;
+				}
+				else
+				{
+					++curPos.X;
+					f += d2;
+				}
 			}
 		}
 	}
