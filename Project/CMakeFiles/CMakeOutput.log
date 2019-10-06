@@ -9,7 +9,7 @@ The output was:
 .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2019-09-27 오후 11:06:44
+빌드 시작: 2019-10-04 오전 12:30:24
 1 노드의 "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\3.15.2\CompilerIdC\CompilerIdC.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
   "Debug\" 디렉터리를 만들고 있습니다.
@@ -35,7 +35,7 @@ FinalizeBuildStatus:
     경고 0개
     오류 0개
 
-경과 시간: 00:00:00.98
+경과 시간: 00:00:02.02
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -54,7 +54,7 @@ The output was:
 .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-빌드 시작: 2019-09-27 오후 11:06:45
+빌드 시작: 2019-10-04 오전 12:30:26
 1 노드의 "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\3.15.2\CompilerIdCXX\CompilerIdCXX.vcxproj" 프로젝트(기본 대상)입니다.
 PrepareForBuild:
   "Debug\" 디렉터리를 만들고 있습니다.
@@ -80,7 +80,7 @@ FinalizeBuildStatus:
     경고 0개
     오류 0개
 
-경과 시간: 00:00:00.62
+경과 시간: 00:00:01.12
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -92,56 +92,56 @@ The CXX compiler identification is MSVC, found in "C:/Users/human/Desktop/4학�
 Determining if the C compiler works passed with the following output:
 Change Dir: C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Project/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_de67c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
+Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_8f62f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ 최적화 컴파일러 버전 19.22.27905(x64)
   testCCompiler.c
   Copyright (c) Microsoft Corporation. All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_de67c.dir\Debug\\" /Fd"cmTC_de67c.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\testCCompiler.c"
-  cmTC_de67c.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_de67c.exe
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_8f62f.dir\Debug\\" /Fd"cmTC_8f62f.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\testCCompiler.c"
+  cmTC_8f62f.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_8f62f.exe
 
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Project/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ceeb3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
+Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_6ba81.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ 최적화 컴파일러 버전 19.22.27905(x64)
   CMakeCCompilerABI.c
   Copyright (c) Microsoft Corporation. All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_ceeb3.dir\Debug\\" /Fd"cmTC_ceeb3.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "D:\CMake\share\cmake-3.15\Modules\CMakeCCompilerABI.c"
-  cmTC_ceeb3.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_ceeb3.exe
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_6ba81.dir\Debug\\" /Fd"cmTC_6ba81.dir\Debug\vc142.pdb" /Gd /TC /errorReport:queue "D:\CMake\share\cmake-3.15\Modules\CMakeCCompilerABI.c"
+  cmTC_6ba81.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_6ba81.exe
 
 
 
 Determining if the CXX compiler works passed with the following output:
 Change Dir: C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Project/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_98143.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
+Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_96cac.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ 최적화 컴파일러 버전 19.22.27905(x64)
-  Copyright (c) Microsoft Corporation. All rights reserved.
   testCXXCompiler.cxx
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_98143.dir\Debug\\" /Fd"cmTC_98143.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
-  cmTC_98143.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_98143.exe
+  Copyright (c) Microsoft Corporation. All rights reserved.
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_96cac.dir\Debug\\" /Fd"cmTC_96cac.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\testCXXCompiler.cxx"
+  cmTC_96cac.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_96cac.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Project/CMakeFiles/CMakeTmp
 
-Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_a78d3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
+Run Build Command(s):D:/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_49ac0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && .NET Framework용 Microsoft (R) Build Engine 버전 16.2.37902+b5aaefc9f
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ 최적화 컴파일러 버전 19.22.27905(x64)
   CMakeCXXCompilerABI.cpp
   Copyright (c) Microsoft Corporation. All rights reserved.
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_a78d3.dir\Debug\\" /Fd"cmTC_a78d3.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "D:\CMake\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_a78d3.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_a78d3.exe
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_49ac0.dir\Debug\\" /Fd"cmTC_49ac0.dir\Debug\vc142.pdb" /Gd /TP /errorReport:queue "D:\CMake\share\cmake-3.15\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_49ac0.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Project\CMakeFiles\CMakeTmp\Debug\cmTC_49ac0.exe
 
 
 
