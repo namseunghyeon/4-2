@@ -148,7 +148,25 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Private\Matrix2x2.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Private\Matrix3x3.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Private\Vector2.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Private\Vector3.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
@@ -159,7 +177,10 @@
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\LinearColor.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\MathHeaders.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\MathUtil.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\Matrix2x2.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\Matrix3x3.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\Vector2.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Math\Public\Vector3.h" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>

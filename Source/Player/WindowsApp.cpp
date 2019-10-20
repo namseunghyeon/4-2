@@ -65,10 +65,15 @@ int APIENTRY _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCm
 			break;
 		}
 
-		float frameFPS = 0.f;
-		float averageFPS = 0.f;
-		_stprintf_s(szFullTitle, "%s Current : %.2fFPS Average : %.2fFPS", szTitle, frameFPS, averageFPS);
-		::SetWindowText(hMainWnd, szFullTitle);
+		float currentTime = SoftRenderer::Inst().GetElapsedTime();
+		if (currentTime - prevShowTitleSec > 0.1)
+		{
+			float frameFPS = SoftRenderer::Inst().GetFrameFPS();
+			float averageFPS = SoftRenderer::Inst().GetAverageFPS();
+			_stprintf_s(szFullTitle, "%s Current : %.2fFPS Average : %.2fFPS", szTitle, frameFPS, averageFPS);
+			::SetWindowText(hMainWnd, szFullTitle);
+			prevShowTitleSec = currentTime;
+		}
 	}
 
 	ShutdownInstance();
@@ -212,7 +217,9 @@ static bool LoopInstance()
 	}
 
 	// Set Update Logic Here.
+	SoftRenderer::Inst().PreUpdate();
 	SoftRenderer::Inst().Update();
+	SoftRenderer::Inst().PostUpdate();
 
 	return true;
 }
