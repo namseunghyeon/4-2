@@ -6,6 +6,7 @@
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\WindowsPrecompiled.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\InputManager.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\SoftRenderer.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\WindowsPrecompiled.h" />
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\Res\resource.h">

@@ -2,11 +2,11 @@
 #include "Precompiled.h"
 #include "Matrix3x3.h"
 
-const Matrix3x3 Matrix3x3::Identity(Vector3::UnitX, Vector3::UnitY, Vector3::UnitZ);
+const Matrix3x3 Matrix3x3::Identity(Vector3(1, 0, 0), Vector3(0, 1, 0), Vector3(0, 0, 1));
 
 Matrix3x3::Matrix3x3()
 {
-	*this = Matrix3x3::Identity;
+	SetIdentity();
 }
 
 Matrix3x3::Matrix3x3(const Vector3& InCol0, const Vector3& InCol1, const Vector3& InCol2)
@@ -16,9 +16,7 @@ Matrix3x3::Matrix3x3(const Vector3& InCol0, const Vector3& InCol1, const Vector3
 	Cols[2] = InCol2;
 }
 
-Matrix3x3::Matrix3x3(float In00, float In01, float In02,
-	float In10, float In11, float In12,
-	float In20, float In21, float In22)
+Matrix3x3::Matrix3x3(float In00, float In01, float In02, float In10, float In11, float In12, float In20, float In21, float In22)
 {
 	Cols[0][0] = In00;
 	Cols[0][1] = In01;
@@ -32,4 +30,3 @@ Matrix3x3::Matrix3x3(float In00, float In01, float In02,
 	Cols[2][1] = In21;
 	Cols[2][2] = In22;
 }
-

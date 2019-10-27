@@ -57,6 +57,27 @@ void WindowsRSI::DrawVerticalLine(int InX, const LinearColor& InColor)
 	}
 }
 
+int WindowsRSI::SetTexture(RSITexture & InRSITexture)
+{
+	_mainTex.Height = InRSITexture.Height;
+	_mainTex.Width = InRSITexture.Width;
+	_mainTex.TextureBuffer = InRSITexture.TextureBuffer;
+	_hasTexture = true;
+	return 0;
+}
+
+LinearColor WindowsRSI::GetTextureSample(const Vector2 & InUV)
+{
+	UINT width = _mainTex.Width;
+	UINT height = _mainTex.Height;
+	UINT pixelX = Math::FloorToInt(InUV.X * width);
+	UINT pixelY = Math::FloorToInt(InUV.Y * height);
+	pixelX %= width;
+	pixelY %= height;
+	UINT textureIndex = width * pixelY + pixelX;
+	return _mainTex.TextureBuffer[textureIndex];
+}
+
 void WindowsRSI::setVertexBuffer(Vertex* InVertexData)
 {
 	VertexBuffer = InVertexData;
@@ -81,7 +102,11 @@ void WindowsRSI::drawTopFlatTriangle(Vertex * tvs, bool DrawLastLine = false)
 	float gradient1 = dx1 / dy;
 	float gradient2 = dx2 / dy;
 
-	PutPixel(ScreenPoint(tvs[2].Position), LinearColor(1.f, 0.f, 0.f));
+	if(!_hasTexture)
+		PutPixel(ScreenPoint(tvs[2].Position), tvs->Color);
+	else
+		PutPixel(ScreenPoint(tvs[2].Position),GetTextureSample(tvs->UV));
+
 	float startY = tvs[2].Position.Y;
 	float startX = tvs[2].Position.X;
 	float currentY = floorf(tvs[2].Position.Y) - 0.5f;
@@ -96,20 +121,25 @@ void WindowsRSI::drawTopFlatTriangle(Vertex * tvs, bool DrawLastLine = false)
 		int pixelY = Math::FloorToInt(currentY);
 		for (int p = pixelX1; p <= pixelX2; ++p)
 		{
-			PutPixel(ScreenPoint(p, pixelY), LinearColor(1.f, 0.f, 0.f));
+			if(!_hasTexture)
+				PutPixel(ScreenPoint(p, pixelY), tvs->Color);
+			else
+				PutPixel(ScreenPoint(p, pixelY), GetTextureSample(tvs->UV));
 		}
 		currentY += 1.0f;
 	}
 
 	if (DrawLastLine)
 	{
-		// 마지막 라인을 그린다.
 		int pixelX1 = Math::FloorToInt(tvs[1].Position.X);
 		int pixelX2 = Math::FloorToInt(tvs[2].Position.X);
 		int pixelY = Math::FloorToInt(destY);
 		for (int p = pixelX1; p <= pixelX2; ++p)
 		{
-			PutPixel(ScreenPoint(p, pixelY), LinearColor(1.f, 0.f, 0.f));
+			if (!_hasTexture)
+				PutPixel(ScreenPoint(p, pixelY), tvs->Color);
+			else
+				PutPixel(ScreenPoint(p, pixelY), GetTextureSample(tvs->UV));
 		}
 	}
 }
@@ -128,7 +158,11 @@ void WindowsRSI::drawBottomFlatTriangle(Vertex * tvs)
 	float gradient1 = dx1 / dy;
 	float gradient2 = dx2 / dy;
 
-	PutPixel(ScreenPoint(tvs[0].Position), LinearColor(0.f, 1.f, 0.f));
+	if(!_hasTexture)
+		PutPixel(ScreenPoint(tvs[0].Position), tvs->Color);
+	else
+		PutPixel(ScreenPoint(tvs[0].Position), GetTextureSample(tvs->UV));
+
 	float startY = tvs[0].Position.Y;
 	float startX = tvs[0].Position.X;
 	float currentY = floorf(tvs[0].Position.Y) - 0.5f;
@@ -143,7 +177,10 @@ void WindowsRSI::drawBottomFlatTriangle(Vertex * tvs)
 		int pixelY = Math::FloorToInt(currentY);
 		for (int p = startX; p <= endX; ++p)
 		{
-			PutPixel(ScreenPoint(p, pixelY), LinearColor(0.f, 1.f, 0.f));
+			if (!_hasTexture)
+				PutPixel(ScreenPoint(p, pixelY), tvs->Color);
+			else
+				PutPixel(ScreenPoint(p, pixelY), GetTextureSample(tvs->UV));
 		}
 		currentY -= 1.0f;
 	}
@@ -154,7 +191,10 @@ void WindowsRSI::drawBottomFlatTriangle(Vertex * tvs)
 	int pixelY = Math::FloorToInt(destY);
 	for (int p = pixelX1; p <= pixelX2; ++p)
 	{
-		PutPixel(ScreenPoint(p, pixelY), LinearColor(0.f, 1.f, 0.f));
+		if (!_hasTexture)
+			PutPixel(ScreenPoint(p, pixelY), tvs->Color);
+		else
+			PutPixel(ScreenPoint(p, pixelY), GetTextureSample(tvs->UV));
 	}
 }
 
@@ -289,6 +329,44 @@ void WindowsRSI::drawPrimitive(UINT InVertexSize, UINT InIndexSize)
 				Vertex bottomTriangle[3] = { newV, tv[1], tv[2] };
 				drawTopFlatTriangle(bottomTriangle);
 				drawBottomFlatTriangle(upperTriangle);
+			}
+		}
+	}
+}
+
+void WindowsRSI::oldDrawPrimitive(UINT verSize, UINT indexSize)
+{
+	if (VertexBuffer == nullptr || IndexBuffer == nullptr)
+	{
+		return;
+	}
+
+	UINT triangleCount = (int)(indexSize / 3);
+	for (UINT ti = 0; ti < triangleCount; ti++)
+	{
+		// Draw Each Triangle List
+		TriangleRasterizer t(
+			VertexBuffer[IndexBuffer[ti * 3]],
+			VertexBuffer[IndexBuffer[ti * 3 + 1]],
+			VertexBuffer[IndexBuffer[ti * 3 + 2]]);
+		t.recalcBounds();
+		for (int x = t.TopLeft.X; x < t.BottomRight.X; ++x)
+		{
+			for (int y = t.TopLeft.Y; y < t.BottomRight.Y; ++y)
+			{
+				ScreenPoint currentPixel(x, y);
+				Vector2 currentPos = currentPixel.ToVector2();
+				if (t.isInside(currentPos))
+				{
+					if (_hasTexture)
+					{
+						PutPixel(currentPixel, GetTextureSample(t.GetUV(currentPos)));
+					}
+					else
+					{
+						PutPixel(currentPixel, t.getColor(currentPos));
+					}
+				}
 			}
 		}
 	}

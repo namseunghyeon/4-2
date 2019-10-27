@@ -130,6 +130,35 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Precompiled.h" />
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Private\Camera2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Private\GameObject2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Private\Texture.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Private\Transform2D.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Precompiled.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Public\Camera2D.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Public\EngineHeaders.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Public\GameObject2D.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Public\Texture.h" />
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\Public\Transform2D.h" />
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Runtime\Engine\ThirdParty\lodepng.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Precompiled.h</PrecompiledHeaderFile>

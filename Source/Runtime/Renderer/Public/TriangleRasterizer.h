@@ -19,6 +19,28 @@ public:
 	int* getContourBuffer() const { return contourBuffer; }
 	int getContourBufferSize() const { return contourBufferSize; }
 
+
+	FORCEINLINE Vector2 GetBaryCentricCoord(const Vector2& InScreenPosition) const
+	{
+		Vector2 w = InScreenPosition - Vector2(vertexBuffer[0].Position.X, vertexBuffer[0].Position.Y);
+		float dotUW = uVector.Dot(w);
+		float dotVW = vVector.Dot(w);
+		float s = (VV * dotUW - UV * dotVW) * invDenom;
+		float t = (UU * dotVW - UV * dotUW) * invDenom;
+		return Vector2(s, t);
+	}
+
+	FORCEINLINE Vector2 GetUV(const Vector2& InScreenPosition) const
+	{
+		if (!bHasUV)
+		{
+			return Vector2::Zero;
+		}
+		Vector2 st = GetBaryCentricCoord(InScreenPosition);
+		float oneMinusST = 1 - st.X - st.Y;
+		return vertexBuffer[0].UV * oneMinusST + vertexBuffer[1].UV * st.X + vertexBuffer[2].UV * st.Y;
+	}
+
 	FORCEINLINE bool isInside(const Vector2& In) const
 	{
 		Vector2 st = getSt(In);
@@ -46,8 +68,8 @@ public:
 		Vector2 w = InScreenPosition - Vector2(vertexBuffer[0].Position.X, vertexBuffer[0].Position.Y);
 		float dotUW = uVector.Dot(w);
 		float dotVW = vVector.Dot(w);
-		float s = (vV * dotUW - uV * dotVW) * invDenom;
-		float t = (uU * dotVW - uV * dotUW) * invDenom;
+		float s = (VV * dotUW - UV * dotVW) * invDenom;
+		float t = (UU * dotVW - UV * dotUW) * invDenom;
 		return Vector2(s, t);
 	}
 
@@ -59,7 +81,7 @@ public:
 private:
 	Vector2 uVector;
 	Vector2 vVector;
-	float uU, uV, vV, invDenom;
+	float UU, UV, VV, invDenom;
 
 	int* contourBuffer = nullptr;
 	int contourBufferSize = 0;

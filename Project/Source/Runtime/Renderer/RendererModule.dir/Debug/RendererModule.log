@@ -1,7 +1,2 @@
-﻿  Precompiled.cpp
-  TriangleRasterizer.cpp
-  Vertex.cpp
-  WindowsGDI.cpp
-  WindowsRSI.cpp
-  코드를 생성하고 있습니다...
+﻿  WindowsRSI.cpp
   RendererModule.vcxproj -> C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Output\Win64\Library\Debug\RendererModule.lib

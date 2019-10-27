@@ -29,48 +29,27 @@ TriangleRasterizer::TriangleRasterizer(Vertex InVertex0, Vertex InVertex1, Verte
 
 void TriangleRasterizer::recalcBounds()
 {
-	Vector2 minPos = Vector2(INFINITY, INFINITY);
-	Vector2 maxPos = Vector2(-INFINITY, -INFINITY);
+	// screen bounds
+	Vector2 sbbMin2D = Vector2(INFINITY, INFINITY);
+	Vector2 sbbMax2D = Vector2(-INFINITY, -INFINITY);
 
 	for (int i = 0; i < 3; i++)
 	{
-		if (vertexBuffer[i].Position.X < minPos.X) minPos.X = vertexBuffer[i].Position.X;
-		if (vertexBuffer[i].Position.Y < minPos.Y) minPos.Y = vertexBuffer[i].Position.Y;
-		if (vertexBuffer[i].Position.X > maxPos.X) maxPos.X = vertexBuffer[i].Position.X;
-		if (vertexBuffer[i].Position.Y > maxPos.Y) maxPos.Y = vertexBuffer[i].Position.Y;
+		if (vertexBuffer[i].Position.X < sbbMin2D.X) sbbMin2D.X = vertexBuffer[i].Position.X;
+		if (vertexBuffer[i].Position.Y < sbbMin2D.Y) sbbMin2D.Y = vertexBuffer[i].Position.Y;
+		if (vertexBuffer[i].Position.X > sbbMax2D.X) sbbMax2D.X = vertexBuffer[i].Position.X;
+		if (vertexBuffer[i].Position.Y > sbbMax2D.Y) sbbMax2D.Y = vertexBuffer[i].Position.Y;
 	}
 
 	uVector = vertexBuffer[1].Position - vertexBuffer[0].Position;
 	vVector = vertexBuffer[2].Position - vertexBuffer[0].Position;
-	uU = uVector.Dot(uVector);
-	uV = uVector.Dot(vVector);
-	vV = vVector.Dot(vVector);
-	invDenom = 1.f / (uU * vV - uV * uV);
+	UU = uVector.Dot(uVector);
+	UV = uVector.Dot(vVector);
+	VV = vVector.Dot(vVector);
+	invDenom = 1.f / (UU * VV - UV * UV);
 
-	BottomRight = ScreenPoint(maxPos.X, minPos.Y);
-	TopLeft = ScreenPoint(minPos.X, maxPos.Y);
-
-	if (contourBuffer != nullptr)
-	{
-		delete[] contourBuffer;
-	}
-
-	contourBufferSize = TopLeft.Y - BottomRight.Y + 1;
-	contourBuffer = new int[contourBufferSize * 2];
-
-	for (int i = 0; i < contourBufferSize; i++)
-	{
-		contourBuffer[i * 2] = Math::IntMin;
-	}
-
-	for (int i = 0; i < contourBufferSize; i++)
-	{
-		contourBuffer[i * 2 + 1] = Math::IntMax;
-	}
-
-	generateContourBuffer(ScreenPoint(vertexBuffer[0].Position), ScreenPoint(vertexBuffer[1].Position));
-	generateContourBuffer(ScreenPoint(vertexBuffer[0].Position), ScreenPoint(vertexBuffer[2].Position));
-	generateContourBuffer(ScreenPoint(vertexBuffer[1].Position), ScreenPoint(vertexBuffer[2].Position));
+	TopLeft = ScreenPoint(sbbMin2D);
+	BottomRight = ScreenPoint(sbbMax2D);
 }
 
 void TriangleRasterizer::generateContourBuffer(const ScreenPoint& InStartPos, const ScreenPoint& InEndPos)

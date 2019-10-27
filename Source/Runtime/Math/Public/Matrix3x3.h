@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Vector3.h"
 
 struct Matrix3x3
@@ -24,6 +23,14 @@ public:
 
 	FORCEINLINE Vector3 operator*(const Vector3& InV) const;
 	FORCEINLINE friend Vector3 operator*=(Vector3& InV, const Matrix3x3& InM)
+	{
+		InV = InM * InV;
+		return InV;
+	}
+
+
+	FORCEINLINE Vector2 operator*(const Vector2& InV) const;
+	FORCEINLINE friend Vector2 operator*=(Vector2& InV, const Matrix3x3& InM)
 	{
 		InV = InM * InV;
 		return InV;
@@ -57,8 +64,9 @@ FORCEINLINE void Matrix3x3::SetScale(Vector3 InScale)
 
 FORCEINLINE void Matrix3x3::SetTransLation(Vector3 InTrans)
 {
-	Cols[0] = Vector3::UnitZ * InTrans.X;
-	Cols[1] = Vector3::UnitZ * InTrans.Y;
+	Cols[0] = Vector3::UnitX;
+	Cols[1] = Vector3::UnitY;
+	Cols[2] = Vector3(InTrans.X, InTrans.Y, 1.f);
 }
 
 FORCEINLINE Matrix3x3 Matrix3x3::Tranpose() const
@@ -81,15 +89,13 @@ FORCEINLINE Vector3& Matrix3x3::operator[](int InIndex)
 	return Cols[InIndex];
 }
 
-
-
 FORCEINLINE Matrix3x3 Matrix3x3::operator*(const Matrix3x3& InM) const
 {
 	Matrix3x3 tpMat = Tranpose();
 	return Matrix3x3(
 		Vector3(tpMat[0].Dot(InM[0]), tpMat[1].Dot(InM[0]), tpMat[2].Dot(InM[0])),
 		Vector3(tpMat[0].Dot(InM[1]), tpMat[1].Dot(InM[1]), tpMat[2].Dot(InM[1])),
-		Vector3(tpMat[0].Dot(InM[2]), tpMat[1].Dot(InM[1]), tpMat[2].Dot(InM[2]))
+		Vector3(tpMat[0].Dot(InM[2]), tpMat[1].Dot(InM[2]), tpMat[2].Dot(InM[2]))
 	);
 }
 
@@ -101,6 +107,14 @@ FORCEINLINE Vector3 Matrix3x3::operator*(const Vector3& InV) const
 		tpMat[1].Dot(InV),
 		tpMat[2].Dot(InV)
 	);
+}
+
+FORCEINLINE Vector2 Matrix3x3::operator*(const Vector2& InV) const
+{
+	Vector3 V3(InV);
+	V3 *= *this;
+
+	return V3.ToVector2();
 }
 
 FORCEINLINE Matrix3x3 Matrix3x3::operator*(float InS) const

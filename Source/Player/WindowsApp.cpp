@@ -218,6 +218,16 @@ static bool LoopInstance()
 
 	// Set Update Logic Here.
 	SoftRenderer::Inst().PreUpdate();
+
+	// key value
+	SoftRenderer::Inst().getInputManager().IsLeft = GetAsyncKeyState(VK_LEFT);
+	SoftRenderer::Inst().getInputManager().IsRight = GetAsyncKeyState(VK_RIGHT);
+	SoftRenderer::Inst().getInputManager().IsDown = GetAsyncKeyState(VK_DOWN);
+	SoftRenderer::Inst().getInputManager().IsUp = GetAsyncKeyState(VK_UP);
+
+	printf("%f", SoftRenderer::Inst().getInputManager().GetXAxis());
+	printf("%f", SoftRenderer::Inst().getInputManager().GetYAxis());
+
 	SoftRenderer::Inst().Update();
 	SoftRenderer::Inst().PostUpdate();
 

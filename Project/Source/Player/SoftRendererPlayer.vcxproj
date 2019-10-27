@@ -41,12 +41,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Resource</LocalDebuggerWorkingDirectory>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Output\Win64\Binary\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SoftRendererPlayer.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">SoftRendererPlayer</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <LocalDebuggerWorkingDirectory Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/human/Desktop/4학년 플젝/SoftRenderer/Resource</LocalDebuggerWorkingDirectory>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Output\Win64\Binary\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SoftRendererPlayer.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">SoftRendererPlayer</TargetName>
@@ -147,6 +149,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\InputManager.h" />
     <ClCompile Include="C:\Users\human\Desktop\4학년 플젝\SoftRenderer\Source\Player\SoftRenderer.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">WindowsPrecompiled.h</PrecompiledHeaderFile>

@@ -2,6 +2,7 @@
 
 #include "CoreDefinition.h"
 #include "Vector2.h"
+#include "Vector3.h"
 
 class DisplaySetting;
 
@@ -13,6 +14,7 @@ public:
 	//explicit ScreenPoint(float InX, float InY);
 	explicit ScreenPoint(float InX, float InY) : X(Math::RoundToInt(InX)), Y(Math::RoundToInt(InY)) { }
 	explicit ScreenPoint(const Vector2& InVec) : X(Math::RoundToInt(InVec.X)), Y(Math::RoundToInt(InVec.Y)) {};
+	explicit ScreenPoint(const Vector3& InVec) : X(Math::RoundToInt(InVec.X)), Y(Math::RoundToInt(InVec.Y)) {};
 
 	//explicit ScreenPoint(const Vector2& InVec) : X(Math::RoundToInt(InVec.X)), Y(Math::RoundToInt(InVec.Y)) {}
 

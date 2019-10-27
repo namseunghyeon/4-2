@@ -26,6 +26,7 @@ public:
 	virtual void setVertexBuffer(Vertex* InVertexData) override;
 	virtual void setIndexBuffer(const int* InIndexData) override;
 	virtual void drawPrimitive(UINT InVertexSize, UINT InIndexSize) override;
+	void oldDrawPrimitive(UINT verSize, UINT indexSize);
 	virtual void drawTopFlatTriangle(Vertex * tvs, bool DrawLastLine) override;
 	virtual void drawBottomFlatTriangle(Vertex * tvs) override;
 	virtual void drawLine(const Vector2& startVec,const Vector2& endvec, const LinearColor& inColor) override;
@@ -35,7 +36,12 @@ public:
 	virtual void DrawHorizontalLine(int InY, const LinearColor& InColor) override;
 	virtual void DrawVerticalLine(int InX, const LinearColor& InColor) override;
 
+	virtual int SetTexture(RSITexture& InRSITexture) override;
+	virtual LinearColor GetTextureSample(const Vector2& InUV) override;
+
 private:
 	Vertex* VertexBuffer;
 	const int* IndexBuffer;
+	RSITexture _mainTex;
+	bool _hasTexture = false;
 };

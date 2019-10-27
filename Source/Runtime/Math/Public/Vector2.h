@@ -72,7 +72,7 @@ FORCEINLINE float Vector2::Dot(const Vector2& InV) const
 	return X * InV.X + Y * InV.Y;
 }
 
-FORCEINLINE float Vector2::operator[](int InIndex) const 
+FORCEINLINE float Vector2::operator[](int InIndex) const
 {
 	return ((float *)this)[InIndex];
 }

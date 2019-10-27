@@ -20,6 +20,7 @@ public:
 	}
 
 public:
+	InputManager& getInputManager() { return _inputManager; }
 	void SetRenderMode(RenderMode InRenderMode) { CurrentRenderMode = InRenderMode; }
 	RenderMode GetRenderMode() const { return CurrentRenderMode; }
 	void Initialize();
@@ -38,6 +39,7 @@ private:
 	SoftRenderer() { }
 	~SoftRenderer() { Shutdown(); }
 
+	InputManager _inputManager;
 	RenderMode CurrentRenderMode = RenderMode::TWO;
 	WindowsRSI* RSI = nullptr;
 
@@ -50,4 +52,6 @@ private:
 	float _elapsedTime = 0;
 	INT64 _startFrameSec = 0;
 	int _frameCount = 0;
+
+	Texture _mainTex;
 };
