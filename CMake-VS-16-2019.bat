@@ -20,7 +20,7 @@ cd Project
 @echo Running CMAKE script.
 @echo:
 
-cmake -G "Visual Studio 15 2017" ..\
+cmake -G "Visual Studio 16 2019" ..\
 
 @echo:
 @echo ============================================================================
