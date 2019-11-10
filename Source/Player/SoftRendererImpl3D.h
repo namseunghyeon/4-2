@@ -1,4 +1,5 @@
 #pragma once
+
 #include "RenderingSoftwareInterface.h"
 #include "InputManager.h"
 
@@ -15,12 +16,16 @@ public:
 private:
 	RenderingSoftwareInterface* RSI = nullptr;
 
+	// 2D Grid Options
 	int Grid2DUnit = 10;
 	ScreenPoint ScreenSize;
 
+	// Input Manager
 	InputManager InputManager;
 
+	// Final Matrix
 	Matrix4x4 FinalMatrix;
+	float _fov = 60.f;
 
-	float _fov;
+	//Camera camera = Camera(Vector3(0, -500, -500));
 };

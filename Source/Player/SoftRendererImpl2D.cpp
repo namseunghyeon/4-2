@@ -59,6 +59,13 @@ void SoftRendererImpl2D::RenderFrameImpl()
 	RSI->DrawPoint(Vector2::Zero - Vector2::UnitX, LinearColor::Blue);
 	RSI->DrawPoint(Vector2::Zero + Vector2::UnitY, LinearColor::Blue);
 	RSI->DrawPoint(Vector2::Zero - Vector2::UnitY, LinearColor::Blue);
+
+	Vector2 p0(0.f, 0.f);
+	Vector2 p1(100.f, 100.f);
+	Vector2 p2(-100.f, 100.f);
+	RSI->DrawLine(p0, p1, LinearColor::Red);
+	RSI->DrawLine(p0, p2, LinearColor::Red);
+	RSI->DrawLine(p1, p2, LinearColor::Red);
 }
 
 void SoftRendererImpl2D::UpdateImpl(float DeltaSeconds)

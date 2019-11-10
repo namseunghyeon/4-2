@@ -1,3 +1,4 @@
+
 #include "Precompiled.h"
 #include "SoftRendererImpl3D.h"
 #include "SoftRenderer.h"
@@ -64,63 +65,60 @@ void SoftRendererImpl3D::RenderFrameImpl()
 	};
 
 	static float a = (float)ScreenSize.X / (float)ScreenSize.Y;
-	static float b = 1.f / tanf(_fov * 0.5f);
+	static float repA = (float)ScreenSize.Y / (float)ScreenSize.X;
+	static float d = 1.f / tanf(Math::Deg2Rad(_fov) * 0.5f);
 
 	for (int t = 0; t < triangleCount; t++)
 	{
-		Vector4 p0 = v[i[t * 3]];
-		Vector4 p1 = v[i[t * 3 + 1]];
-		Vector4 p2 = v[i[t * 3 + 2]];
+		Vector4 tp[3];
+		tp[0] = v[i[t * 3]];
+		tp[1] = v[i[t * 3 + 1]];
+		tp[2] = v[i[t * 3 + 2]];
 
-		p0 = FinalMatrix * p0;
-		p1 = FinalMatrix * p1;
-		p2 = FinalMatrix * p2;
-
-		/*for (int ti = 0; ti < 3; ti++)
+		for (int ti = 0; ti < 3; ti++)
 		{
-			tp[ti] = sibal;
-		}*/
+			tp[ti] = FinalMatrix * tp[ti];
+			float repW = 1.f / tp[ti].W;
+			tp[ti].X *= repW;
+			tp[ti].Y *= repW;
+			tp[ti].Z *= repW;
+		}
 
-		RSI->DrawLine(p0.ToVector2(), p1.ToVector2(), LinearColor::Red);
-		RSI->DrawLine(p0.ToVector2(), p2.ToVector2(), LinearColor::Red);
-		RSI->DrawLine(p1.ToVector2(), p2.ToVector2(), LinearColor::Red);
+		// Backface Culling
+		Vector3 edge1 = (tp[1] - tp[0]).ToVector3();
+		Vector3 edge2 = (tp[2] - tp[0]).ToVector3();
+		Vector3 faceNormal = -edge1.Cross(edge2).Normalize();
+		static Vector3 cameraDir = -Vector3::UnitZ;
+		if (cameraDir.Dot(faceNormal) > 0.f)
+			continue;
+
+		for (int ti = 0; ti < 3; ti++)
+		{
+			float repZ = 1.f / -tp[ti].Z;
+			tp[ti].Y = tp[ti].Y * d * repZ;
+			tp[ti].X = tp[ti].X * d * repZ * repA;
+
+			tp[ti].X *= (ScreenSize.X * 0.5f);
+			tp[ti].Y *= (ScreenSize.Y * 0.5f);
+		}
+
+		RSI->DrawLine(tp[0].ToVector2(), tp[1].ToVector2(), LinearColor::Red);
+		RSI->DrawLine(tp[0].ToVector2(), tp[2].ToVector2(), LinearColor::Red);
+		RSI->DrawLine(tp[1].ToVector2(), tp[2].ToVector2(), LinearColor::Red);
 	}
 }
 
 void SoftRendererImpl3D::UpdateImpl(float DeltaSeconds)
 {
-	static Vector3 cubePos = Vector3::Zero;
-	static float cubeRotationY = 0.f;
-	static float cubeRotationX = 0.f;
-	static float cubeRotationZ = 0.f;
-	static float cubeScaleXYZ = 100.f;
-
 	static float moveSpeed = 100.f;
 	static float rotateSpeed = 180.f;
-	cubePos += Vector3::UnitZ * InputManager.GetYAxis() * moveSpeed * DeltaSeconds;
-	cubeRotationY += InputManager.GetXAxis() * rotateSpeed * DeltaSeconds;
 
-
-	float cy, sy, cp, sp, cr, sr;
-	Math::GetSinCos(cy, sy, cubeRotationY);
-	Math::GetSinCos(cp, sp, cubeRotationX);
-	Math::GetSinCos(cr, sr, cubeRotationZ);
-
-	Matrix4x4 tMat(Vector4::UnitX, Vector4::UnitY, Vector4::UnitZ, Vector4(cubePos));
-	Matrix4x4 rMat(
-		Vector4(cr * cy + sr * sp * sy, cy * sr - cr * sp * sy, -cp * sy, false),
-		Vector4(-sr * cp, cr * cp, -sp, false),
-		Vector4(cr * sy - sr * sp * cy, sr * sy + cr * sp * cy, cp * cy, false),
-		Vector4::UnitW);
-
-	Matrix4x4 sMat(Vector4::UnitX * cubeScaleXYZ, Vector4::UnitY * cubeScaleXYZ, Vector4::UnitZ * cubeScaleXYZ, Vector4::UnitW);
-	Matrix4x4 mMat = tMat * rMat * sMat;
-
-	static Camera camera;
-	camera.SetPosition(Vector3(0, 500.f, -500.f));
-	static Vector3 cameraPos(0.f, 500.f, -500.f);
-
-	Vector3 viewZ = (cubePos - cameraPos).Normalize();
+	static GameObject cube = GameObject();
+	cube.AddPosition(Vector3(0, 0, InputManager.GetYAxis() * moveSpeed * DeltaSeconds));
+	cube.AddRotate(Vector3(0.f, InputManager.GetXAxis() * moveSpeed * DeltaSeconds, 0.f));
+	cube.SetScale(100.f);
+	static Vector3 cameraPos = Vector3(0, -500, -500);
+	Vector3 viewZ = (cameraPos - cube.getPosition()).Normalize();
 	Vector3 viewX = Vector3::UnitY.Cross(viewZ).Normalize();
 	if (viewX.IsZero())
 	{
@@ -132,6 +130,18 @@ void SoftRendererImpl3D::UpdateImpl(float DeltaSeconds)
 	Matrix4x4 vitMat = Matrix4x4(Vector4::UnitX, Vector4::UnitY, Vector4::UnitZ, Vector4(-cameraPos));
 	Matrix4x4 vMat = virMat * vitMat;
 
-	// 최종 행렬
-	FinalMatrix = vMat * mMat;
+	static float repA = (float)ScreenSize.Y / (float)ScreenSize.X;
+	static float d = 1.f / tanf(Math::Deg2Rad(_fov) * 0.5f);
+	static float n = 5.5f;
+	static float f = 100.f;
+	float repNF = 1.f / (n - f);
+	float k = f * repNF;
+	float l = f * n * repNF;
+	Matrix4x4 pMat(
+		Vector4::UnitX * repA * d,
+		Vector4::UnitY * d,
+		Vector4(0.f, 0.f, k, -1.f),
+		Vector4(0.f, 0.f, l, 0.f));
+
+	FinalMatrix = pMat * vMat * cube.GetTRS();
 }

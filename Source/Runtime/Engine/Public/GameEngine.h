@@ -2,8 +2,12 @@
 
 #include <string>
 #include <map>
+#include <list>
+
+// compoent
 #include "Transform.h"
 #include "GameObject.h"
+
 #include "Camera.h"
 
 class GameEngine

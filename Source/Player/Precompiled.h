@@ -9,5 +9,6 @@
 #endif
 
 #include "MathHeaders.h"
-#include "EngineHeaders.h"
 #include <cassert>
+
+#include "EngineHeaders.h"

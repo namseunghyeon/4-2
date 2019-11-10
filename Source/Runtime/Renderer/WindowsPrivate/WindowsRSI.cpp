@@ -112,7 +112,6 @@ void WindowsRSI::DrawLine(const Vector2 & InStartPos, const Vector2 & InEndPos, 
 	}
 }
 
-
 void WindowsRSI::DrawFullVerticalLine(int InX, const LinearColor & InColor)
 {
 	if (InX < 0 || InX >= ScreenSize.X)

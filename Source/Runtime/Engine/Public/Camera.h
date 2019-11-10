@@ -1,12 +1,17 @@
 #pragma once
 
-#include "GameObject.h"
-
 class Camera : public GameObject
 {
 public:
-	FORCEINLINE Camera(const Vector3& InV) { SetPosition(InV); }
-	FORCEINLINE Camera() = default;
+	Camera(const ScreenPoint& inScreenSize, const float& inFov = 60.f);
 
 	Matrix4x4 GetTR() const;
+
+	void setPMat(const ScreenPoint& inScreenSize, const float& inFov = 60.f);
+	Matrix4x4 getPMat() const { return _pMat; }
+
+private:
+	float _fov;
+
+	Matrix4x4 _pMat;
 };

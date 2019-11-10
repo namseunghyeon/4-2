@@ -155,3 +155,5 @@ void SoftRenderer::BindImpl3DClass()
 		IsImplBinded = true;
 	}
 }
+
+
