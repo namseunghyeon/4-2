@@ -1,0 +1,44 @@
+
+#pragma once
+
+#include <memory>
+#include "WindowsGDI.h"
+#include "RenderingSoftwareInterface.h"
+
+class WindowsGDI;
+class WindowsRSI : public WindowsGDI, public RenderingSoftwareInterface
+{
+public:
+	WindowsRSI() = default;
+	~WindowsRSI();
+
+public:
+	virtual bool Init(const ScreenPoint& InScreenSize) override;
+	virtual void Shutdown() override;
+	virtual bool IsInitialized() const { return IsGDIInitialized; }
+	virtual void SetBlendingMode(BlendingModes InNewBlendingMode) override;
+
+	virtual void Clear(const LinearColor& InClearColor) override;
+	virtual void BeginFrame() override;
+	virtual void EndFrame() override;
+
+	virtual void DrawPoint(const Vector2& InVectorPos, const LinearColor& InColor) override;
+	virtual void DrawLine(const Vector2 & InStartPos, const Vector2 & InEndPos, const LinearColor & InColor) override;
+
+	virtual void DrawFullVerticalLine(int InX, const LinearColor& InColor) override;
+	virtual void DrawFullHorizontalLine(int InY, const LinearColor& InColor) override;
+
+	virtual void SetUniformMatrix(Matrix4x4* InMatrixData) override;
+	/*virtual void SetVertexBuffer(VertexData* InVertexData) override;
+	virtual void SetIndexBuffer(int* InIndexData) override;*/
+	//virtual void DrawPrimitive(UINT InVertexSize, UINT InIndexSize) override;s
+	virtual void DrawPrimitive(std::vector<Vector4>* InVertex, std::vector<int> *InIndex) override;
+
+private:
+	void SetPixel(const ScreenPoint& InPos, const LinearColor& InColor);
+
+	BlendingModes BlendingMode = BlendingModes::Opaque;
+	Matrix4x4* _uniformMat = nullptr;
+	/*VertexData * _vertexData = nullptr;
+	int* _indexData = nullptr;*/
+};
